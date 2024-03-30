@@ -40,9 +40,10 @@ app.get('/carsinfo', (req, res) => {
         .then(response => res.send(response.data.data))
 })
 app.post('/carsinfo', (req, res) => {
-    axios.get('https://exam-server-7c41747804bf.herokuapp.com/carsList')
-        .then(response => res.send(response.data.data))
+  axios.post('https://exam-server-7c41747804bf.herokuapp.com/carsList')
+      .then(response => res.send(response.data.data))
 })
+
 
 
 async function run() {
