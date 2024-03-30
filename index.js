@@ -19,10 +19,7 @@ app.get('/', (req, res) => {
     res.send("Bond Car Rental server")
 })
 
-app.get('/carsinfo', (req, res) => {
-    axios.get('https://exam-server-7c41747804bf.herokuapp.com/carsList')
-        .then(response => res.send(response.data.data))
-})
+
 
 
 
@@ -41,7 +38,26 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
+
+    const bond_car_rental = client.db('bond-car-rental')
+    const reservationInfo = bond_car_rental.collection('reservationInfo')
+
+    app.get('/carsinfo', (req, res) => {
+        axios.get('https://exam-server-7c41747804bf.herokuapp.com/carsList')
+            .then(response => res.send(response.data.data))
+    })
+
+
+
+    
+
+
+
+
+
+
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
