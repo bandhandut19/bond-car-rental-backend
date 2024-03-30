@@ -35,6 +35,12 @@ const client = new MongoClient(uri, {
   }
 });
 
+app.get('/carsinfo', (req, res) => {
+    axios.get('https://exam-server-7c41747804bf.herokuapp.com/carsList')
+        .then(response => res.send(response.data.data))
+})
+
+
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
@@ -43,10 +49,6 @@ async function run() {
     const bond_car_rental = client.db('bond-car-rental')
     const reservationInfo = bond_car_rental.collection('reservationInfo')
 
-    app.get('/carsinfo', (req, res) => {
-        axios.get('https://exam-server-7c41747804bf.herokuapp.com/carsList')
-            .then(response => res.send(response.data.data))
-    })
 
 
 
